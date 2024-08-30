@@ -1,0 +1,402 @@
+﻿@model DOANCOSO26.Models.Booking
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .container-custom {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+        /* Đảm bảo khoảng cách lề trái và lề phải bằng nhau */
+        .container-custom > * {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+
+        .container-custom img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+    .bg-light {
+        background-color: #f9f9f9 !important;
+    }
+
+    .bold-text {
+        font-weight: bold;
+        color: #000;
+    }
+
+</style>
+<head>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css" />
+
+</head>
+
+<body>
+    @* <div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+    <h3 class="text-white display-3 mb-4">
+    XÁC NHẬN THANH TOÁN</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+    <li class="breadcrumb-item active text-white">Contact</li>
+    </ol>
+
+    </div>
+    </div> *@
+
+    <!-- Contact Start -->
+    <div class="container-fluid contact bg-light py-5">
+        @* <div class="container py-5">  *@
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+
+            <h5 class="section-title px-3">Thanh toán</h5>
+            <h1 class="mb-0">Confirm information</h1>
+        </div>
+
+        <div class="row g-5 ">
+            <div class="col-lg-2">
+                <div class="container-custom  md-3">
+                    <img src="~/images/VNpayPoster.png" />
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <button class="btn btn-primary w-50 py-3" style="margin-bottom: 20px" type="button" onclick="history.back()">
+                    <i class="fa-solid fa-arrow-left"></i> Quay lại
+                </button>
+                <div class="container-custom md-3">
+                    <div class="rounded">
+                        <iframe class="rounded w-100"
+                                style="height: 450px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18646.15816784453!2d106.61174800134457!3d10.744355569660115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752dd07f25309f%3A0x626e2974cf8a49be!2zQuG6v24geGUgTWnhu4FuIFTDonk!5e0!3m2!1svi!2s!4v1717314938254!5m2!1svi!2s"
+                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    </div>
+                </div>
+                <div class="container-custom md-3">
+
+                    <h4 class="text-center mb-4" style="background-color: #003366; color: white; padding: 10px; border-radius: 10px;">Liên hệ</h4>
+                    <img src="/images/lienhe.png" />
+                    <div class="col-12 text-center" style="margin-top: 20px;">
+                    </div>
+
+
+                    <h4 class="text-center mb-4" style="background-color: #003366; color: white; padding: 10px; border-radius: 10px;"> ĐIỀU KHOẢN & LƯU Ý</h4>
+                    <p>
+                        (*) Quý khách vui lòng có mặt tại bến xuất phát của xe trước ít nhất 30 phút giờ xe khởi hành, mang theo thông báo đã thanh toán vé thành công có chứa mã vé được gửi từ hệ thống FUTA BUS LINE. Vui lòng liên hệ Trung tâm tổng đài 1900 6067 để được hỗ trợ.
+                    </p>
+                    <p>(*) Nếu quý khách có nhu cầu trung chuyển, vui lòng liên hệ Tổng đài trung chuyển 1900 6918 trước khi đặt vé. Chúng tôi không đón/trung chuyển tại những điểm xe trung chuyển không thể tới được.</p>
+
+
+
+
+
+                </div>
+                <div class="container-custom md-3">
+                    <h4 class="text-center mb-4" style="background-color: #003366; color: white; padding: 10px; border-radius: 10px;">Gửi hàng</h4>
+                    <div class="three-fourth">
+                        <form>
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th>Loại hành lý</th>
+                                    <th>Giá (VND)</th>
+
+                                </tr>
+                                <tr>
+                                    <td>Hành lý xách tay  5kg <i>với kích thước tối đa 40 x 22 x 55 cm</i></td>
+                                    <td>Miễn Phí</td>
+
+
+                                </tr>
+
+                                <tr>
+                                    <td>Hành lý xách tay  10kg <i>với kích thước tối đa 50 x 25 x 55 cm</i></td>
+                                    <td>10.000 VND</td>
+
+
+                                </tr>
+                                <tr>
+
+                                    <td>Hành lý xách tay  15kg <i>với kích thước tối đa 50 x 30 x 55 cm</i></td>
+                                    <td>20.000 VND</td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>Hành lý xách tay  20kg <i>với kích thước tối đa 55 x 35 x 55 cm</i></td>
+                                    <td>30.000 VND</td>
+
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>Hành lý xách tay trên 25kg <i>với kích thước tối đa 55 x 40 x 70 cm</i></td>
+                                    <td>50.000 VND</td>
+
+                                </tr>
+
+
+                            </table>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <h3 class="mb-2">Thông tin cá nhân</h3>
+                <form asp-action="Add">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input asp-for="UserName" class="form-control " id="name" placeholder="Your Name" />
+                                <label for="name">Your Name</label>
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="phonenumber" asp-for="SDT" class="form-control " id="phonenumber" placeholder="Your Phone Number">
+                                <label for="email">Your Phone Number</label>
+                                <span asp-validation-for="SDT" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="phonenumber" asp-for="Email" class="form-control " id="phonenumber" placeholder="Your Phone Number">
+                                <label for="email">Your Email</label>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <input type="hidden" asp-for="TripId" value="@ViewBag.TripId" />
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <select asp-for="SeatId" asp-items="ViewBag.Seats" class="form-select bg-white " id="seatSelect">
+                                    <option value="">-- Chọn ghế: --</option>
+                                </select>
+                                <span asp-validation-for="SeatId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div id="seatInfo">
+                            <!-- Thông tin về ghế, chuyến xe, và xe bus sẽ được hiển thị tại đây -->
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <select asp-for="PickupStopId" asp-items="ViewBag.Stops" class="form-select bg-white " id="pickupSelect" onchange="updateDropOffOptions()">
+                                    <option value="">-- Chọn điểm lên xe --</option>
+                                </select>
+                                <span asp-validation-for="PickupStopId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <select asp-for="DropOffStopId" asp-items="ViewBag.Stops" class="form-select bg-white " id="dropoffSelect" onchange="updatePickupOptions()">
+                                    <option value="">-- Chọn điểm xuống xe --</option>
+                                </select>
+                                <span asp-validation-for="DropOffStopId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                           
+                            <div class="form-floating">
+                               
+                                <select asp-for="Goods" class="form-select bg-white ">
+                                    <option value=""> ---- Chọn hàng hóa kí gửi ---- </option>
+                                    <option value="weight5kg,">Hành lý xách tay 5kg - Miễn Phí </option>
+                                    <option value="weight10kg">Hành lý xách tay 10kg - Phụ phí : 10.000 VND</option>
+                                    <option value="weight15Kg">Hành lý xách tay 15kg - Phụ phí : 20.000 VND</option>
+                                    <option value="weight20kg">Hành lý xách tay 20kg - Phụ phí : 30.000 VND</option>
+                                    <option value="weight25kg">Hành lý xách tay  trên 25kg - Phụ phí : 50.000 VND</option>
+
+                                </select>
+                                <span asp-validation-for="Goods" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <label for="message">Note</label>
+                                <input textarea asp-for="Note" class="form-control " placeholder="Leave a message here" id="message" style="height: 250px" />
+                                <span asp-validation-for="Note" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="agreeCheckbox">
+                                <label class="form-check-label" for="agreeCheckbox">
+                                    Tôi đồng ý với <a asp-controller="Home" asp-action="Privacy" style="color: #007bff; text-decoration: underline;">Điều khoản và Chính sách</a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <input type="submit" name="payment" class="btn btn-primary w-100 py-3" style="margin-top: 10px" value="Đặt vé (Thanh Toán sau)">
+
+                        </div>
+
+                    </div>
+                    <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+
+                        <h5 class="section-title px-3" style="margin-top: 30px"> hoặc thanh toán bằng </h5>
+
+                    </div>
+                    <div class="container-custom  md-3">
+                        <div class="row">
+
+                            <div class="col-4">
+                                <img src="/images/VNpayLogo.jpg" alt="VNPay Logo">
+                                <input type="submit" name="payment" class="btn btn-primary w-100 py-3" style="margin-top: 10px" value="Thanh Toán VNPay">
+                            </div>
+
+                            <div class="col-4">
+                                <img src="/images/MomoLogo.png" alt="Mono Logo">
+                                <input type="submit" name="payment" class="btn btn-primary w-100 py-3" style="margin-top: 10px" value="Thanh Toán MoMo">
+                            </div>
+
+                            <div class="col-4">
+                                <img src="/images/PaypalLogo.jpg" alt="Paypal Logo">
+                                <input type="submit" name="payment" class="btn btn-primary w-100 py-3" style="margin-top: 10px" value="Thanh Toán PayPal">
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-lg-2">
+                <div class="container-custom  md-3">
+                    <img src="/images/MomoPoster.png" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Contact End -->
+    <!-- Subscribe Start -->
+    @* <div class="container-fluid subscribe py-5">
+    <div class="container text-center py-5">
+    <div class="mx-auto text-center" style="max-width: 900px;">
+    <h5 class="subscribe-title px-3">Subscribe</h5>
+    <h1 class="text-white mb-4">Our Newsletter</h1>
+    <p class="text-white mb-5">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum tempore nam, architecto doloremque velit explicabo? Voluptate sunt eveniet fuga eligendi! Expedita laudantium fugiat corrupti eum cum repellat a laborum quasi.
+    </p>
+    <div class="position-relative mx-auto">
+    <input class="form-control border-primary rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+    <button type="button" class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 px-4 mt-2 me-2">Subscribe</button>
+    </div>
+    </div>
+    </div>
+    </div> *@
+
+    <!-- Subscribe End -->
+    <!-- Footer End -->
+    <!-- Copyright Start -->
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- Thêm mã JavaScript vào cuối trang HTML -->
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Booking/lib/easing/easing.min.js"></script>
+    <script src="~/Booking/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/Booking/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/Booking/lib/lightbox/js/lightbox.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#seatSelect').change(function () {
+                var seatId = $(this).val();
+                if (seatId) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '@Url.Action("GetBusTripAndBusInfo", "Reservation")',
+                        data: { seatId: seatId },
+                        success: function (data) {
+                            var seatInfo = `
+
+                                        <div style="background-color: white; border-radius: 10px; padding: 20px; margin-top: 20px;">
+                                    <h4 class="text-center mb-4" style="background-color: #003366; color: white; padding: 10px; border-radius: 10px;">Thông tin chỗ ngồi</h4>
+                                            <p><span style="color: #000; font-weight: bold; font-size: 20px;">Số ghế: ${data.seatnumber}</p>
+                                            <p><span style="color: #000; font-weight: bold; font-size: 20px;"> Giá vé: ${data.price}<span></p>
+                                    <hr />
+                                </div>
+
+                                       <div style="background-color: white; border-radius: 10px; padding: 20px; margin-top: 20px;">
+                    <h4 class="text-center mb-4" style="background-color: #003366; color: white; padding: 10px; border-radius: 10px;">Thông tin chuyến xe</h4>
+                    <p class="bold-text">Điểm đi: ${data.start}</p>
+                    <p class="bold-text">Điểm đến: ${data.end}</p>
+                            <p class="bold-text">Thời gian khởi hành: ${data.departureTime}</p>
+                            <p class="bold-text">Ngày khởi hành: ${data.departtureDate}</p>
+                            <p class="bold-text">Số xe: ${data.busnumber}</p>
+                            <p class="bold-text">Hãng xe: ${data.company}</p>
+                            <p class="bold-text">Điểm lên xe : </p>
+                            <p class="bold-text">Thời gian đến điểm lên xe: ${data.pickuptime}</p>
+                </div>
+
+
+                                                        `;
+                            $('#seatInfo').html(seatInfo);
+                        }
+                    });
+                } else {
+                    $('#seatInfo').html('');
+                }
+            });
+        });
+    </script>
+    <script>
+        function updateDropOffOptions() {
+            var pickupSelect = document.getElementById('pickupSelect');
+            var dropoffSelect = document.getElementById('dropoffSelect');
+            var selectedPickup = pickupSelect.value;
+
+            for (var i = 0; i < dropoffSelect.options.length; i++) {
+                var option = dropoffSelect.options[i];
+                if (option.value === selectedPickup) {
+                    option.disabled = true;
+                } else {
+                    option.disabled = false;
+                }
+            }
+        }
+
+        function updatePickupOptions() {
+            var pickupSelect = document.getElementById('pickupSelect');
+            var dropoffSelect = document.getElementById('dropoffSelect');
+            var selectedDropoff = dropoffSelect.value;
+
+            for (var i = 0; i < pickupSelect.options.length; i++) {
+                var option = pickupSelect.options[i];
+                if (option.value === selectedDropoff) {
+                    option.disabled = true;
+                } else {
+                    option.disabled = false;
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('pickupSelect').addEventListener('change', updateDropOffOptions);
+            document.getElementById('dropoffSelect').addEventListener('change', updatePickupOptions);
+        });
+    </script>
+
+
+    <!-- Template Javascript -->
+    <script src="~/Booking/js/main.js"></script>
+</body>
+
+</html>

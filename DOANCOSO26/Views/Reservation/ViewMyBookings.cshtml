@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DOANCOSO26.Models.Booking>
+
+<body>
+   
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        
+        <!-- Spinner End -->
+        <!-- Navbar Start -->
+       
+        <!-- Navbar End -->
+        <!-- Jobs Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Lịch sử mua vé</h1>
+                <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            
+                            @foreach (var item in Model.Where(x => x.StatusBooking == StatusBooking.UnPaid || x.StatusBooking == StatusBooking.Paid || x.StatusBooking == StatusBooking.Cancelled))
+                            {
+                                <div class="job-item p-4 mb-4">
+                                    <div class="row g-4">
+                                        <div class="col-sm-12 col-md-8 d-flex align-items-center">
+                                            <img class="flex-shrink-0 img-fluid border rounded" src="/images/logo1.jpg" alt="" style="width: 80px; height: 80px;">
+                                            <div class="text-start ps-4">
+                                                <h5 class="mb-3">Mã vé: @item.InvoiceCode</h5>
+                                                <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>@item.Seat.BusTrip.BusRoute.Start-@item.Seat.BusTrip.BusRoute.End</span>
+                                                <span class="text-truncate me-3"><i class="fas fa-user text-primary me-2"></i>@item.UserName</span>
+                                                <span class="text-truncate me-3"><i class="fas fa-phone text-primary me-2"></i>@item.SDT</span>
+                                                <span class="text-truncate me-3"><i class="fas fa-sticky-note text-primary me-2"></i>@item.Note</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+                                            <div class="d-flex mb-3">
+                                                @if (item.StatusBooking == StatusBooking.UnPaid || item.StatusBooking == StatusBooking.Paid)
+                                                {
+                                                <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.Id" style="margin-right: 10px;">Hủy vé</a>
+                                                }
+                                                <a class="btn btn-primary" asp-action="Display" asp-route-id="@item.Id" style="margin-right: 10px;">Xem chi tiết</a>
+                                              
+                                                <a class="btn btn-primary" style="margin-right: 10px; background-color: @(item.StatusBooking == StatusBooking.UnPaid ? "#4cc9f0" : "#e5383b")">@item.StatusBooking</a>
+                                             
+                                            </div>
+
+                                            <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date booking: @item.Timebooking.ToString("HH:mm dd/MM/yyyy ")</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary py-3 px-5" >Trở về trang chủ </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Jobs End -->
+        <!-- Footer Start -->
+       
+        <!-- Footer End -->
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+    
+    <!-- JavaScript Libraries -->
+
+</body>
+
+</html>

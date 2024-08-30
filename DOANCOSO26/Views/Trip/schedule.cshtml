@@ -1,0 +1,328 @@
+﻿@model Dictionary<string, List<DOANCOSO26.Models.BusRoute>>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Makaan - Real Estate HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<style>
+    .text-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 80px; /* Increased font size */
+        font-weight: bold;
+        white-space: nowrap; /* Prevents text from wrapping */
+        z-index: 2;
+        text-shadow: 5px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    #slideshow {
+        width: 100%;
+        position: relative;
+        transition: transform 1s ease-in-out;
+    }
+
+    .slide-out-right {
+        transform: translateX(100%);
+    }
+
+    .slide-in-left {
+        transform: translateX(-100%);
+    }
+
+    .job-item {
+        border-radius: 15px; /* Điều chỉnh giá trị để có độ cong mong muốn */
+        border: 1px solid #ddd; /* Thêm border nếu cần */
+    }
+
+    .team-item {
+        border-radius: 30px; /* hoặc bất kỳ giá trị nào bạn muốn */
+        border: 1px solid #00B98E;
+    }
+
+    .routes-list {
+        max-height: 240px; /* Giới hạn chiều cao của khối */
+        overflow-y: auto;
+        overflow-x: none; /* Thêm thanh cuộn dọc nếu nội dung vượt quá chiều cao */
+    }
+
+    .custom-col {
+        flex: 1;
+    }
+</style>
+<!-- Testimonial End -->
+<body>
+
+
+    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+        <div class="container">
+        </div>
+    </div>
+    <div class="container-fluid header bg-white p-0">
+        <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+            <div class="col-md-6 animated fadeIn">
+                <img class="img-fluid" id="slideshow" src="/images/Picture7.png" alt="">
+            </div>
+
+            <div class="col-md-6 p-5 mt-lg-5">
+                <h1 class="display-5 animated fadeIn mb-4">Cùng khám phá <span class="text-primary">Các điểm đến tuyệt vời </span> cùng Whelly</h1>
+
+                <p class="animated fadeIn mb-4 pb-2">
+                    Hãy để chúng tôi làm điều đó cho bạn - mỗi hành trình là một chuyến đi đầy ấn tượng và tiện ích,
+                    Với Wheely, chúng tôi kết nối bạn đến mọi nơi một cách thông minh và hiệu quả."
+                </p>
+                <a href="" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Đặt vé ngay !</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+        <div class="container">
+            <div class="row g-2">
+                <div class="col-md-12">
+                    <div class="row g-2 d-flex">
+                        <div class="col-md-5 custom-col">
+                            <input type="text" class="form-control border-0 py-3" id="searchInput" placeholder="Nhập điểm đi">
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-dark border-0 w-100 py-3" onclick="swapInputs()"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                        <div class="col-md-5 custom-col">
+                            <input type="text" class="form-control border-0 py-3" placeholder="Nhập điểm đến" id="searchInput">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search End -->
+    <!-- Category Start -->
+    <div class="container-xxl py-5 ">
+        <div class="container">
+
+
+            <div class="row g-4">
+                <div class="team-item rounded overflow-hidden">
+
+                    <div class="job-item-ala p-2 mb-4" style="margin-top:18px; border-radius: 15px; border: 1px solid #ddd">
+                        <div class="row g-4">
+                            <div class="col-sm-12 col-md-10 d-flex align-items-center">
+                                <div class="text-start ps-4 w-100">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-md-4 ">
+                                            <p class="mb-2" style="color:#0e2e50; font-weight: bold; font-size: 20px">Tuyến xe </p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p class="mb-2" style="color:#0e2e50;  font-weight: bold; font-size: 20px">
+                                                Quãng đường
+                                            </p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <p class="mb-2" style="color:#0e2e50; font-weight: bold; font-size: 20px">Thời gian hành trình</p>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <p class="mb-2" style="color:#0e2e50;  font-weight: bold; font-size: 20px">Giá vé</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @* <div class="col-sm-12 col-md-2 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+                            <a class="btn btn-primary" style="padding-top:5px; padding-bottom:5px;" href="">Tìm tuyến xe </a>
+                            </div> *@
+                        </div>
+                    </div>
+
+                </div>
+
+
+                @foreach (var group in Model)
+                {
+                    <div class="team-item rounded overflow-hidden">
+                        <h7>@group.Key</h7>
+                        <div class="routes-list">
+                            @foreach (var item in group.Value)
+                            {
+                                <form asp-action="Search" method="get" onsubmit="validateForm(event)">
+                                    <div class="job-item p-2 mb-4" style="margin-top:18px; margin-bottom:10px">
+                                        <div class="row g-4">
+                                            <div class="col-sm-12 col-md-10 d-flex align-items-center">
+                                                <div class="text-start ps-4 w-100">
+                                                    <div class="row d-flex align-items-center">
+                                                        <div class="col-md-4">
+                                                            <p class="mb-2" style="color:#00B98E; font-weight: bold; font-size: 20px">@item.Start <i class="fas fa-random"></i><span style="color: #0e2e50"> @item.End</span></p>
+                                                        </div>
+                                                        <input type="hidden" id="Start" name="Start" value="@item.Start" />
+                                                        <input type="hidden" id="End" name="End" value="@item.End" />
+                                                        <input type="hidden" id="departureDate" name="departureDate" value="Date.Now" />
+                                                        <div class="col-md-2">
+                                                            <p class="mb-2" style="color:#0e2e50; font-size: 18px">@item.Distance</p>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <p class="mb-2" style="color:#0e2e50; font-size: 18px">@item.Time</p>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <p class="mb-2" style="color:#0e2e50; font-size: 20px">@item.Price</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-2 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+                                                <button class="btn btn-primary" type="submit" style="padding-top:5px; padding-bottom:5px;" href="">Tìm tuyến xe</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            }
+                            @* <form asp-action="Search" onsubmit="validateForm(event)">
+                                <div class="row g-2">
+                                    <div class="col-md-10">
+                                        <div class="row g-2">
+                                            <div class="col-md-3">
+                                                <div class="d-block h5 mb-2" style=" font-size: 15px; color: #fff">Điểm đi</div>
+                                                <input type="text" id="start" class="form-control border-0 py-3" name="Start" placeholder="Nhập điểm đi">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-block h5 mb-2" style=" font-size: 15px; color: #fff">Điểm đến</div>
+                                                <input type="text" id="end" class="form-control border-0 py-3" name="End" placeholder="Nhập điểm đến">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-block h5 mb-2" style=" font-size: 15px; color: #fff">Ngày đi</div>
+                                                <input type="date" id="departureDate" class="form-control border-0 py-3" name="DepartureDate" placeholder="Chọn ngày đi" min="@DateTime.Now.ToString("yyyy-MM-dd")">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-block h5 mb-2" style=" font-size: 15px; color: #fff">Số vé</div>
+                                                <input type="number" id="seatsRequired" class="form-control border-0 py-3" name="SeatsRequired" placeholder="Số ghế cần đặt">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="d-block h5 mb-2" style=" font-size: 15px; color: #fff">Tìm kiếm</div>
+                                        <button class="btn btn-dark border-0 w-100 py-3" type="submit">Search</button>
+                                    </div>
+                                </div>
+                            </form> *@
+                        </div>
+                    </div>
+                }
+               
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Property List Start -->
+    <!-- Property List End -->
+    <!-- Call to Action Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="bg-light rounded p-3">
+                <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                            <img class="img-fluid rounded w-100" src="/images/Picture10.png" alt="">
+                        </div>
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                            <div class="mb-4">
+                                <h1 class="mb-3">Đặt vé xe nhanh cùng <span style="color: #13BE96; font-weight: bold; ">Wheely</span></h1>
+                                <p>Eirmod sed ipsum dolor sit rebum magna erat. Tempor lorem kasd vero ipsum sit sit diam justo sed vero dolor duo.</p>
+                            </div>
+                            <a href="" class="btn btn-primary py-3 px-4 me-2"><i class="fa fa-phone-alt me-2"></i>Make A Call</a>
+                            <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Get Appoinment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Call to Action End -->
+    <!-- Scripts -->
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script>
+        let images = ["/images/Picture3.png", "/images/Picture8.png", "/images/Picture7.png"];
+        let currentIndex = 0;
+        const imageElement = document.getElementById('slideshow');
+
+        function changeImage() {
+            imageElement.classList.add('fade-out');
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % images.length;
+                imageElement.src = images[currentIndex];
+                imageElement.classList.remove('fade-out');
+                imageElement.classList.add('fade-in');
+            }, 1000); // 1 second for fade-out effect
+        }
+
+        setInterval(changeImage, 2000); // 2 seconds interval
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#searchInput').on('keyup', function () {
+                var searchText = $(this).val().toLowerCase();
+                $('.job-item').each(function () {
+                    var rowData = $(this).find('.col-md-4').text().toLowerCase();
+                    if (rowData.indexOf(searchText) === -1) {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        // Tạo đối tượng Date mới cho ngày hôm nay
+        var today = new Date();
+
+        // Định dạng ngày theo định dạng YYYY-MM-DD
+        var formattedDate = today.toISOString().split('T')[0];
+
+        // Gán giá trị cho trường input
+        document.getElementById('departureDate').value = formattedDate;
+    </script>
+
+</body>
+
+</html>

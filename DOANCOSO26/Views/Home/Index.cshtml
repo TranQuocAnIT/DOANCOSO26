@@ -1,8 +1,610 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<DOANCOSO26.Models.BusRoute>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Index</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+
+<!-- Search Start -->
+<div class="container-fluid header bg-white p-0">
+    <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+        <div class="col-md-6 p-5 mt-lg-5">
+            <h1 class="display-5 animated fadeIn mb-4">Kết nối <span class="text-primary">Mọi tuyến đường</span> đặt vé xe bus dễ dàng cùng  Wheely</h1>
+
+            <p class="animated fadeIn mb-4 pb-2">
+                Hãy để chúng tôi làm điều đó cho bạn - mỗi hành trình là một chuyến đi đầy ấn tượng và tiện ích,
+                Với Wheely, chúng tôi kết nối bạn đến mọi nơi một cách thông minh và hiệu quả."
+            </p>
+            <a href="" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Đặt vé ngay !</a>
+        </div>
+        <div class="col-md-6 animated fadeIn">
+            <div class="owl-carousel header-carousel">
+                <div class="owl-carousel-item">
+                    <img class="img-fluid" src="images/Bus2Layout.jpg" alt="">
+                </div>
+                <div class="owl-carousel-item">
+                    <img class="img-fluid" src="images/Bus5Layout.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- Testimonial End -->
+<body>
+    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+        <div class="container">
+            <h1 class="mb-3">Đặt chuyến ngay</h1>
+            <p class="text-white mb-0">Cùng Wheely bắt đầu hành trinh tuyệt vời nào !!!</p>
+            <form asp-action="Search" onsubmit="validateForm(event)">
+                <div class="row g-2">
+                    <div class="d-block h5 mb-2" style=" font-size: 18px; text-decoration: underline; text-align: right; color: #fff">Hướng dẫn mua vé </div>
+                    <div class="col-md-10">
+                       
+                        <div class="row g-2">
+                            <div class="col-md-3">
+                                <select id="start" class="form-control border-0 py-3 " name="Start" data-mdb-select-init>
+                                   
+                                    <option value="">Chọn điểm đi</option>
+                                    @foreach (var location in ViewBag.StartLocations)
+                                    {
+                                        <option value="@location">@location</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select id="end" class="form-control border-0 py-3" name="End">
+                                    <option value="">Chọn điểm đến</option>
+                                    @foreach (var location in ViewBag.EndLocations)
+                                    {
+                                        <option value="@location">@location</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="date" id="departureDate" class="form-control border-0 py-3" name="DepartureDate" placeholder="Ngày đi"  @* min="@DateTime.Now.ToString("dd-MM-yyyy") " *@>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="number" id="seatsRequired" class="form-control border-0 py-3" name="SeatsRequired" placeholder="Số ghế cần đặt">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                       
+                        <button class="btn btn-dark border-0 w-100 py-3" type="submit">Search</button>
+                    </div>
+                    
+                </div>
+            </form>
+        
+            
+        </div>
+    </div>
+   
+    <!-- Search End -->
+    <!-- Category Start -->
+    <!-- Property List Start -->
+    <div class="container-xxl py-5">
+      
+        <div class="container">
+            <div class="row g-0 gx-5 align-items-end">
+
+                <div class="col-lg-12">
+                    <div class="content-wrapper text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+                        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                            <h1 class="mb-3">CÁC TUYẾN PHỔ BIẾN</h1>
+                            <p>Được khách hàng tin tưởng và lựa chọn</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                   </div>
+                <div class="col-lg-4">
+                    <div class=" text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+                        <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
+                            <li class="nav-item me-2">
+                                <a class="btn btn-outline-primary active" data-bs-toggle="pill" href="#tab-1">Featured</a>
+                            </li>
+                            <li class="nav-item me-2">
+                                <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-2">For Sell</a>
+                            </li>
+                            <li class="nav-item me-0">
+                                <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-3">For Rent</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+               
+                <div class="tab-content">
+
+                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                        <div class="row g-4">
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="property-item rounded overflow-hidden">
+                                    <div class="position-relative overflow-hidden">
+                                        <a href=""><img class="img-fluid" src="/images/hochiminh.png" alt=""></a>
+                                        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">Tuyến xe từ TP. Hồ Chí Minh</div>
+
+                                    </div>
+                                    @foreach (var item in Model.Where(x => x.Start == "Tp. Hồ Chí Minh").Take(3))
+                                    {
+                                        <div class="p-2 pb-0">
+
+                                            <a class="d-block h5 " href="" style=" margin-left:20px; margin-right:20px;">@item.End</a>
+                                            <p style=" margin-left:20px; margin-right:20px;">@item.Distance - @item.Time - @DateTime.Now.ToString("dd:MM:yyyy")</p>
+                                        </div>
+                                        <div style="height: 1px; background-color: #000; margin-left:20px; margin-right:20px; margin-bottom:5px;"></div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="property-item rounded overflow-hidden">
+                                    <div class="position-relative overflow-hidden">
+                                        <a href=""><img class="img-fluid" src="/images/danang.png" alt=""></a>
+                                        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">Tuyến xe từ TP. Hồ Chí Minh</div>
+
+                                    </div>
+                                    @foreach (var item in Model.Where(x => x.Start == "Đà Nẵng").Take(3))
+                                    {
+                                        <div class="p-2 pb-0">
+
+                                            <a class="d-block h5 " href="" style=" margin-left:20px; margin-right:20px;">@item.End</a>
+                                            <p style=" margin-left:20px; margin-right:20px;">@item.Distance - @item.Time - @DateTime.Now.ToString("dd:MM:yyyy")</p>
+                                        </div>
+                                        <div style="height: 1px; background-color: #000; margin-left:20px; margin-right:20px; margin-bottom:5px;"></div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="property-item rounded overflow-hidden">
+                                    <div class="position-relative overflow-hidden">
+                                        <a href=""><img class="img-fluid" src="/images/dalat.png" alt=""></a>
+                                        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">Tuyến xe từ Đà Lạt </div>
+
+                                    </div>
+                                    @foreach (var item in Model.Where(x => x.Start == "Đà Lạt").Take(3))
+                                    {
+                                        <div class="p-2 pb-0">
+
+                                            <a class="d-block h5 " href="" style=" margin-left:20px; margin-right:20px;">@item.End</a>
+                                            <p style=" margin-left:20px; margin-right:20px;">@item.Distance - @item.Time - @DateTime.Now.ToString("dd:MM:yyyy")</p>
+                                        </div>
+                                        <div style="height: 1px; background-color: #000; margin-left:20px; margin-right:20px; margin-bottom:5px;"></div>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            
+
+            </div>
+
+        </div>
+    </div>
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5 mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-6">
+                    <p><span class="text-primary me-2">#</span>Dịch Vụ Của Chúng Tôi</p>
+                    <h1 class="display-5 mb-0">
+                        Dịch Vụ Đặc Biệt Dành Cho
+                        <span class="text-primary">Khách Hàng Đặt Vé Xe</span>
+                    </h1>
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-primary h-100 d-flex align-items-center py-4 px-4 px-sm-5">
+                        <i class="fa fa-3x fa-phone-alt text-white"></i>
+                        <div class="ms-4">
+                            <p class="text-white mb-0">Liên hệ để biết thêm thông tin</p>
+                            <h2 class="text-white mb-0">+012 345 6789</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row gy-5 gx-4">
+                <div class="col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <i class="fa fa-3x fa-ticket-alt text-primary mb-3"></i>
+                    <h5 class="mb-3">Đặt Vé Trực Tuyến</h5>
+                    <span>
+                        Đặt vé xe trực tuyến một cách dễ dàng và tiện lợi qua hệ thống của chúng tôi.
+                    </span>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <i class="fa fa-3x fa-info-circle text-primary mb-3"></i>
+                    <h5 class="mb-3">Lịch Trình Thực</h5>
+                    <span>
+                        Kiểm tra lịch trình xe khách theo thời gian thực để lên kế hoạch chuyến đi chính xác.
+                    </span>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <i class="fa fa-3x fa-hands-helping text-primary mb-3"></i>
+                    <h5 class="mb-3">Hỗ Trợ Khách Hàng</h5>
+                    <span>
+                        Dịch vụ hỗ trợ khách hàng 24/7 luôn sẵn sàng giải đáp mọi thắc mắc của bạn.
+                    </span>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <i class="fa fa-3x fa-utensils text-primary mb-3"></i>
+                    <h5 class="mb-3">Đồ Ăn & Đồ Uống</h5>
+                    <span>
+                        Thưởng thức đồ ăn và đồ uống đa dạng tại các trạm dừng nghỉ suốt chuyến đi.
+                    </span>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <i class="fa fa-3x fa-truck text-primary mb-3"></i>
+                    <h5 class="mb-3">Dịch Vụ Trung Chuyển</h5>
+                    <span>
+                        Dịch vụ trung chuyển tiện lợi, giúp bạn di chuyển từ điểm A đến điểm B một cách thuận tiện.
+                    </span>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <i class="fa fa-3x fa-wifi text-primary mb-3"></i>
+                    <h5 class="mb-3">Wi-Fi Tốc Độ Cao Miễn Phí</h5>
+                    <span>
+                        Truy cập Wi-Fi tốc độ cao miễn phí trong suốt chuyến đi để bạn luôn kết nối.
+                    </span>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <i class="fa fa-3x fa-box-open text-primary mb-3"></i>
+                    <h5 class="mb-3">Dịch Vụ Hàng Hóa</h5>
+                    <span>
+                        Dịch vụ vận chuyển hàng hóa an toàn và đáng tin cậy để bạn yên tâm gửi đồ.
+                    </span>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <i class="fa fa-3x fa-bed text-primary mb-3"></i>
+                    <h5 class="mb-3">Nghỉ Ngơi Thoải Mái</h5>
+                    <span>
+                        Nghỉ ngơi thoải mái tại các nhà nghỉ dọc tuyến đường trước khi tiếp tục hành trình.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl py-5">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3"><span style="color: #00B98E; font-weight: bold;"> WHEE</span>LY BUS LINES - CHẤT LƯỢNG LÀ DANH DỰ</h1>
+            <p>Được khách hàng tin tưởng và lựa chọn</p>
+        </div>
+        <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                    <img class="img-fluid w-100" src="/images/bg1.png">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h1 class="mb-4">TẦM NHÌN VÀ SỨ MỆNH    </h1>
+                <a class="d-block h5 " href="" style="  margin-right:20px;"> BÁO ĐÁP TỔ QUỐC VÌ MỘT VIỆT NAM HÙNG CƯỜNG.</a>
+                <p class="mb-4">
+
+                    Trở thành Tập Đoàn uy tín và chất lượng hàng đầu Việt Nam với cam kết:
+                </p>
+
+                <p><i class="fa fa-check text-primary me-3"></i>Tạo môi trường làm việc năng động, thân thiện.</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Phát triển từ lòng tin của khách hàng.</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Trở thành tập đoàn dẫn đầu chuyên nghiệp.</p>
+                <p class="mb-4">
+
+                    <span style="color: #00B98E; font-weight: bold;"> Whe</span>ely luôn phấn đấu làm việc hiệu quả nhất, để luôn cống hiến, đóng góp hết sức mình vì một Việt Nam hùng cường.
+                </p>
+                <a class="btn btn-primary py-3 px-5 mt-3" href="">Read More</a>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
+        <div class="container feature px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 feature-text py-5 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="p-lg-5 ps-lg-0">
+                        <h6 class="text-primary">Why Choose Us!</h6>
+                        <h1 class="mb-4">Hơn 12 năm kinh nghiệm trong ngành vận tải và dịch vụ khách hàng.</h1>
+                        <p class="mb-4 pb-2">Chúng tôi tự hào mang đến cho bạn dịch vụ đặt vé xe chất lượng cao, thuận tiện và đáng tin cậy</p>
+                        <div class="row g-4">
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="btn-lg-square bg-primary rounded-circle">
+                                        <i class="fa fa-check text-white"></i>
+                                    </div>
+                                    <div class="ms-4">
+                                        <p class="mb-0">Quality</p>
+                                        <h5 class="mb-0">Giá cả hợp lý</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="btn-lg-square bg-primary rounded-circle">
+                                        <i class="fa fa-shield-alt text-white"></i>
+                                    </div>
+                                    <div class="ms-4">
+                                        <p class="mb-0">Expert</p>
+                                        <h5 class="mb-0">An toàn hàng đầu</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="btn-lg-square bg-primary rounded-circle">
+                                        <i class="fa fa-user-tie text-white"></i>
+                                    </div>
+                                    <div class="ms-4">
+                                        <p class="mb-0">Support</p>
+                                        <h5 class="mb-0">Tài xế chuyên nghiệp</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="btn-lg-square bg-primary rounded-circle">
+                                        <i class="fa fa-headset text-white"></i>
+                                    </div>
+                                    <div class="ms-4">
+                                        <p class="mb-0">Support</p>
+                                        <h5 class="mb-0">Hỗ trợ khách hàng 24/7</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 pe-lg-0 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100" src="/images/busp2.png" style="object-fit: cover;" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-lg-12">
+        <div class="content-wrapper text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <h1 class="mb-3">CHỌN CHUYẾN CÙNG <span style="color: #00B98E; font-weight: bold;"> WHE</span>ELY THÔI !!</h1>
+                <p>Quy trình đặt vé xe cùng wheely</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5 d-flex">
+                <div class="col-md-4 col-lg-2 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="d-flex align-items-center justify-content-center bg-light" style="width: 60px; height: 60px;">
+                            <i class="fa fa-search fa-2x text-primary"></i>
+                        </div>
+                        <h1 class="display-1 " style="color: #346497;">01</h1>
+                    </div>
+                    <h5>Tìm  kiếm thông tin chuyến</h5>
+                </div>
+                <div class="col-md-4 col-lg-2 wow fadeIn" data-wow-delay="0.3s">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="d-flex align-items-center justify-content-center bg-light" style="width: 60px; height: 60px;">
+                            <i class="fa fa-list fa-2x text-primary"></i>
+                        </div>
+                        <h1 class="display-1 " style="color: #346497;">02</h1>
+                    </div>
+                    <h5>Lựa chọn chuyến và vị trí phù hợp</h5>
+                </div>
+                <div class="col-md-4 col-lg-2 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="d-flex align-items-center justify-content-center bg-light" style="width: 60px; height: 60px;">
+                            <i class="fa fa-calendar-check fa-2x text-primary"></i>
+                        </div>
+                        <h1 class="display-1 " style="color: #346497;">03</h1>
+                    </div>
+                    <h5>Xác nhận TTCN và Đặt vé</h5>
+                </div>
+                <div class="col-md-4 col-lg-2 wow fadeIn" data-wow-delay="0.7s">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="d-flex align-items-center justify-content-center bg-light" style="width: 60px; height: 60px;">
+                            <i class="fa fa-credit-card fa-2x text-primary"></i>
+                        </div>
+                        <h1 class="display-1 " style="color: #346497;">04</h1>
+                    </div>
+                    <h5>Thanh toán</h5>
+                </div>
+                <div class="col-md-4 col-lg-2 wow fadeIn" data-wow-delay="0.9s">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="d-flex align-items-center justify-content-center bg-light" style="width: 60px; height: 60px;">
+                            <i class="fa fa-ticket-alt fa-2x text-primary"></i>
+                        </div>
+                        <h1 class="display-1" style="color: #346497;">05</h1>
+                    </div>
+                    <h5>Nhận vé</h5>
+                </div>
+                <div class="col-md-4 col-lg-2 wow fadeIn" data-wow-delay="1.1s">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <div class="d-flex align-items-center justify-content-center bg-light" style="width: 60px; height: 60px;">
+                            <i class="fa fa-bus fa-2x text-primary"></i>
+                        </div>
+                        <h1 class="display-1 " style="color: #346497;">06</h1>
+                    </div>
+                    <h5>Khởi hành thôi</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prope
+
+    rty List End -->
+  
+        <div class="container">
+            <div class="bg-light rounded p-3">
+                <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                            <img class="img-fluid rounded w-100" src="/images/gdd.png" alt="">
+                        </div>
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                            <div class="mb-4">
+                                <h1 class="mb-3">Đặt vé xe nhanh cùng <span style="color: #00B98E; font-weight: bold;"> Whe</span>ely <i class="fas fa-bus-alt"></i></h1>
+                                <p>Eirmod sed ipsum dolor sit rebum magna erat. Tempor lorem kasd vero ipsum sit sit diam justo sed vero dolor duo.</p>
+                            </div>
+                            <a href="" class="btn btn-primary py-3 px-4 me-2"><i class="fa fa-phone-alt me-2"></i>Make A Call</a>
+                            <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Get Appoinment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+
+  <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
+        <div class="container quote px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100" src="/images/lay1.jpg" style="object-fit: cover;" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 quote-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="p-lg-5 pe-lg-0">
+                        <div class="section-title text-start">
+                            <h1 class="display-5 mb-4">Để lại phản hồi </h1>
+                        </div>
+                        <p class="mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo erat amet</p>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control border-0" placeholder="Your Mobile" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <select class="form-select border-0" style="height: 55px;">
+                                        <option selected>Select A Service</option>
+                                        <option value="1">Service 1</option>
+                                        <option value="2">Service 2</option>
+                                        <option value="3">Service 3</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control border-0" placeholder="Special Note"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service Start -->
+   
+
+
+
+
+
+    <!-- Team End -->
+    
+    <script></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script>
+        function validateForm(event) {
+            // Prevent form submission
+            event.preventDefault();
+
+            // Get form fields
+            const start = document.getElementById('start');
+            const end = document.getElementById('end');
+            const departureDate = document.getElementById('departureDate');
+            const seatsRequired = document.getElementById('seatsRequired');
+
+            // Check if at least one field is filled
+            if (start.value.trim() === '' && end.value.trim() === '' && departureDate.value.trim() === '' && seatsRequired.value.trim() === '') {
+                alert('Vui lòng điền ít nhất một trường.');
+            } else {
+                // If at least one field is filled, submit the form
+                event.target.submit();
+            }
+        }
+    </script>
+    <script>
+        function validateForm(event) {
+            // Prevent form submission
+            event.preventDefault();
+
+            // Get form fields
+            const start = document.getElementById('start');
+            const end = document.getElementById('end');
+            const departureDate = document.getElementById('departureDate');
+            const seatsRequired = document.getElementById('seatsRequired');
+
+            // Check if at least one field is filled
+            if (start.value.trim() === '' && end.value.trim() === '' && departureDate.value.trim() === '' && seatsRequired.value.trim() === '') {
+                alert('Vui lòng điền ít nhất một trường.');
+            } else {
+                // Store selected date in a variable
+                var searchedDate = departureDate.value;
+
+                // Create a hidden input to hold the searched date
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'SearchedDate';
+                input.value = searchedDate;
+                event.target.appendChild(input);
+
+                // If at least one field is filled, submit the form
+                event.target.submit();
+            }
+        }
+    </script>
+</body>
+
+</html>
